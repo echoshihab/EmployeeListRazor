@@ -26,6 +26,7 @@ namespace EmployeeListRazor
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<ApplicationDbContext>(option => option.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+            services.AddControllersWithViews(); //need this for api
             services.AddRazorPages().AddRazorRuntimeCompilation();
         }
 
@@ -52,6 +53,7 @@ namespace EmployeeListRazor
 
             app.UseEndpoints(endpoints =>
             {
+                endpoints.MapControllers(); // also need this for api
                 endpoints.MapRazorPages();
             });
         }
